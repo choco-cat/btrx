@@ -4,10 +4,28 @@ use Bitrix\Main\EventManager;
 use Bitrix\Sale;
 
 $eventManager = EventManager::getInstance();
-$eventManager->addEventHandler('sale', 'OnSaleComponentOrderCreated', array('СorrectDiscount', 'OnSaleOrderBeforeSavedHandler'));
+$eventManager->addEventHandler(
+    'sale',
+    'OnSaleComponentOrderCreated',
+    array('customizeTemplate', 'OnSaleOrderBeforeSavedHandler'),
+);
 
-class СorrectDiscount
+$eventManager->addEventHandler(
+    'main',
+    'OnProlog',
+    array('customizeTemplate', 'addCustomMeta'),
+);
+
+class customizeTemplate
 {
+    //Вставить мета-тег specialdate в секцию head
+    public static function addCustomMeta()
+    {
+        global $APPLICATION;
+        $APPLICATION->ShowMeta('specialdate');
+    }
+
+    //Удалить все скидки в корзине, если товары из разных разделов
     public static function OnSaleOrderBeforeSavedHandler(&$order)
     {
         //Получить корзину пользователя
