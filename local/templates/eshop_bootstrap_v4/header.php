@@ -11,7 +11,6 @@ if (isset($_GET["theme"]) && in_array($_GET["theme"], array("blue", "green", "ye
 $theme = COption::GetOptionString("main", "wizard_eshop_bootstrap_theme_id", "green", SITE_ID);
 
 $curPage = $APPLICATION->GetCurPage(true);
-
 ?><!DOCTYPE html>
 <html xml:lang="<?=LANGUAGE_ID?>" lang="<?=LANGUAGE_ID?>">
 <head>
@@ -22,6 +21,7 @@ $curPage = $APPLICATION->GetCurPage(true);
 	<? $APPLICATION->ShowHead(); ?>
 </head>
 <body class="bx-background-image bx-theme-<?=$theme?>" <?$APPLICATION->ShowProperty("backgroundImage");?>>
+
 <div id="panel"><? $APPLICATION->ShowPanel(); ?></div>
 <?$APPLICATION->IncludeComponent(
 	"bitrix:eshop.banner",

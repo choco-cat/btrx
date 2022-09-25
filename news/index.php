@@ -1,11 +1,11 @@
 <?
+
 require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
-$APPLICATION->SetPageProperty("PageType", "Самая главная");
 $APPLICATION->SetTitle("Новости");
 ?><?$APPLICATION->IncludeComponent(
-	"bitrix:news",
-	"bootstrap_v4",
-	Array(
+	"bitrix:news", 
+	".default", 
+	array(
 		"ADD_ELEMENT_CHAIN" => "Y",
 		"ADD_SECTIONS_CHAIN" => "N",
 		"AJAX_MODE" => "N",
@@ -23,11 +23,17 @@ $APPLICATION->SetTitle("Новости");
 		"DETAIL_ACTIVE_DATE_FORMAT" => "d.m.Y",
 		"DETAIL_DISPLAY_BOTTOM_PAGER" => "Y",
 		"DETAIL_DISPLAY_TOP_PAGER" => "N",
-		"DETAIL_FIELD_CODE" => array("",""),
+		"DETAIL_FIELD_CODE" => array(
+			0 => "",
+			1 => "",
+		),
 		"DETAIL_PAGER_SHOW_ALL" => "Y",
 		"DETAIL_PAGER_TEMPLATE" => "arrows",
 		"DETAIL_PAGER_TITLE" => "Страница",
-		"DETAIL_PROPERTY_CODE" => array("",""),
+		"DETAIL_PROPERTY_CODE" => array(
+			0 => "",
+			1 => "",
+		),
 		"DETAIL_SET_CANONICAL_URL" => "N",
 		"DISPLAY_BOTTOM_PAGER" => "Y",
 		"DISPLAY_DATE" => "Y",
@@ -41,8 +47,14 @@ $APPLICATION->SetTitle("Новости");
 		"IBLOCK_TYPE" => "news",
 		"INCLUDE_IBLOCK_INTO_CHAIN" => "N",
 		"LIST_ACTIVE_DATE_FORMAT" => "d.m.Y",
-		"LIST_FIELD_CODE" => array("",""),
-		"LIST_PROPERTY_CODE" => array("",""),
+		"LIST_FIELD_CODE" => array(
+			0 => "",
+			1 => "",
+		),
+		"LIST_PROPERTY_CODE" => array(
+			0 => "",
+			1 => "",
+		),
 		"MEDIA_PROPERTY" => "",
 		"MESSAGE_404" => "",
 		"META_DESCRIPTION" => "-",
@@ -60,7 +72,6 @@ $APPLICATION->SetTitle("Новости");
 		"PREVIEW_TRUNCATE_LEN" => "",
 		"SEF_FOLDER" => "/news/",
 		"SEF_MODE" => "Y",
-		"SEF_URL_TEMPLATES" => Array("detail"=>"#ELEMENT_CODE#/#ID#","news"=>"","rss"=>"rss/","rss_section"=>"#SECTION_ID#/rss/","search"=>"search/","section"=>""),
 		"SET_LAST_MODIFIED" => "N",
 		"SET_STATUS_404" => "Y",
 		"SET_TITLE" => "Y",
@@ -70,6 +81,7 @@ $APPLICATION->SetTitle("Новости");
 		"SORT_BY2" => "SORT",
 		"SORT_ORDER1" => "DESC",
 		"SORT_ORDER2" => "ASC",
+		"SPECIALDATE" => "Y",
 		"STRICT_SECTION_CHECK" => "N",
 		"TEMPLATE_THEME" => "site",
 		"USE_CATEGORIES" => "N",
@@ -80,49 +92,15 @@ $APPLICATION->SetTitle("Новости");
 		"USE_RSS" => "Y",
 		"USE_SEARCH" => "N",
 		"USE_SHARE" => "N",
-		"YANDEX" => "N"
-	)
-);?><?$APPLICATION->IncludeComponent(
-	"eshop_bootstrap_v4:iblock.element.add",
-	"",
-	Array(
-		"AJAX_MODE" => "N",
-		"AJAX_OPTION_ADDITIONAL" => "",
-		"AJAX_OPTION_HISTORY" => "N",
-		"AJAX_OPTION_JUMP" => "N",
-		"AJAX_OPTION_STYLE" => "Y",
-		"ALLOW_DELETE" => "Y",
-		"ALLOW_EDIT" => "Y",
-		"CUSTOM_TITLE_CODE" => "",
-		"CUSTOM_TITLE_DATE_ACTIVE_FROM" => "",
-		"CUSTOM_TITLE_DATE_ACTIVE_TO" => "",
-		"CUSTOM_TITLE_DETAIL_PICTURE" => "",
-		"CUSTOM_TITLE_DETAIL_TEXT" => "",
-		"CUSTOM_TITLE_IBLOCK_SECTION" => "",
-		"CUSTOM_TITLE_NAME" => "",
-		"CUSTOM_TITLE_PREVIEW_PICTURE" => "",
-		"CUSTOM_TITLE_PREVIEW_TEXT" => "",
-		"CUSTOM_TITLE_TAGS" => "",
-		"DEFAULT_INPUT_SIZE" => "30",
-		"DETAIL_TEXT_USE_HTML_EDITOR" => "N",
-		"ELEMENT_ASSOC" => "CREATED_BY",
-		"GROUPS" => array(),
-		"IBLOCK_ID" => "1",
-		"IBLOCK_TYPE" => "news",
-		"LEVEL_LAST" => "Y",
-		"MAX_FILE_SIZE" => "0",
-		"MAX_LEVELS" => "100000",
-		"MAX_USER_ENTRIES" => "100000",
-		"NAV_ON_PAGE" => "10",
-		"PREVIEW_TEXT_USE_HTML_EDITOR" => "N",
-		"PROPERTY_CODES" => array("NAME","CODE","TAGS","DATE_ACTIVE_FROM","DATE_ACTIVE_TO","IBLOCK_SECTION","PREVIEW_TEXT","PREVIEW_PICTURE","DETAIL_TEXT","DETAIL_PICTURE"),
-		"PROPERTY_CODES_REQUIRED" => array("NAME","CODE","PREVIEW_TEXT","PREVIEW_PICTURE","DETAIL_TEXT"),
-		"RESIZE_IMAGES" => "N",
-		"SEF_MODE" => "N",
-		"STATUS" => "ANY",
-		"STATUS_NEW" => "N",
-		"USER_MESSAGE_ADD" => "",
-		"USER_MESSAGE_EDIT" => "",
-		"USE_CAPTCHA" => "N"
-	)
+		"YANDEX" => "N",
+		"COMPONENT_TEMPLATE" => ".default",
+		"SEF_URL_TEMPLATES" => array(
+			"news" => "",
+			"section" => "",
+			"detail" => "#ELEMENT_CODE#/#ID#",
+			"rss" => "rss/",
+			"rss_section" => "#SECTION_ID#/rss/",
+		)
+	),
+	false
 );?><?require($_SERVER["DOCUMENT_ROOT"]."/bitrix/footer.php");?>
