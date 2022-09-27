@@ -2,6 +2,9 @@
 
 use Bitrix\Main\EventManager;
 use Bitrix\Sale;
+use Bitrix\Main\Localization\Loc;
+
+Loc::LoadMessages(__FILE__);
 
 $eventManager = EventManager::getInstance();
 $eventManager->addEventHandler(
@@ -25,11 +28,20 @@ class customizeBehavior
     {
         global $APPLICATION;
         if ($arFields['ACTIVE'] !== 'Y' && $arFields['IBLOCK_ID'] === static::PRODUCT_IBLOCK_ID) {
-            $res = CIBlockElement::GetList(array(), array("ID" => $arFields["ID"]), false, false, array("SHOW_COUNTER"));
+            $res = CIBlockElement::GetList(
+                array(),
+                array("ID" => $arFields["ID"]),
+                false,
+                false,
+                array("SHOW_COUNTER")
+            );
             if ($arRes = $res->GetNext()) {
                 if ($arRes['SHOW_COUNTER'] > static::SHOW_COUNT) {
-                    $APPLICATION->throwException('Товар невозможно деактировать, у него ' .
-                        $arRes['SHOW_COUNTER'] . ' просмотров');
+                    $APPLICATION->throwException(
+                        Loc::getMessage(
+                            'SHOW_COUNTER_ERROR',
+                            array("#NUM#" => $arRes['SHOW_COUNTER']))
+                    );
                     return false;
                 }
             }
